@@ -51,7 +51,7 @@ peer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
 })
 
-function connectToNewUser(userId, stream) {
+const connectToNewUser = (userId, stream) => {
   const call = peer.call(userId, stream)
   const video = document.createElement('video')
   call.on('stream', userVideoStream => {
@@ -64,7 +64,7 @@ function connectToNewUser(userId, stream) {
   peers[userId] = call
 }
 
-function addVideoStream(video, stream) {
+const addVideoStream = (video, stream) => {
   video.srcObject = stream
   video.addEventListener('loadedmetadata', () => {
     video.play()
@@ -75,11 +75,11 @@ function addVideoStream(video, stream) {
 
 
 const scrollToBottom = () => {
-  var d = $('.main__chat_window');
+  let d = $('.main__chat_window');
   d.scrollTop(d.prop("scrollHeight"));
 }
 
-
+//Mute Video
 const muteUnmute = () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
   if (enabled) {
